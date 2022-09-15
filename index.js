@@ -8,6 +8,10 @@ app.use(cors());
 const server = http.createServer(app);
 const port = process.env.PORT || 3001;
 
+app.get("/",(req,res)=>{
+  res.send("HELL ITS WORKING");
+})
+
 const io = new Server(server, {
   cors: {
     origin: "https://local-bazar-2c557.firebaseapp.com/",
