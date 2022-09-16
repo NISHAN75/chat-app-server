@@ -3,18 +3,16 @@ const app = express();
 const http = require("http");
 const cors = require("cors");
 const { Server } = require("socket.io");
+require("dotenv").config();
+
+const port = process.env.PORT || 3001;
 app.use(cors());
 
 const server = http.createServer(app);
-const port = process.env.PORT || 3001;
-
-app.get("/",(req,res)=>{
-  res.send("HELL ITS WORKING");
-})
 
 const io = new Server(server, {
   cors: {
-    origin: "https://local-bazar-2c557.firebaseapp.com/",
+    origin: "https://local-bazar-2c557.web.app",
     methods: ["GET", "POST"],
   },
 });
@@ -37,5 +35,5 @@ io.on("connection", (socket) => {
 });
 
 server.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log("SERVER RUNNING");
 });
